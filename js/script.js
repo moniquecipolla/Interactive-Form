@@ -19,7 +19,7 @@ jobRole.addEventListener('change', event => {
 shirtDesign.addEventListener('input', event => {
   colorSelector.disabled = false;
   let selectedOption = event.target.value;
-  for (let i = 0; i < colorOptions.length; i++ ) {
+  for (let i = 0; i < colorOptions.length; i++) {
     let colorTheme = colorOptions[i].getAttribute('data-theme');
     if (selectedOption === colorTheme) {
       colorOptions[i].hidden = false;
