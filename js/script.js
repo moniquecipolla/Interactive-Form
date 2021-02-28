@@ -1,10 +1,10 @@
 const jobRole = document.getElementById('title');
 const otherRole = document.getElementById('other-job-role');
 const colorSelector = document.getElementById('color');
+const colorOptions = colorSelector.children;
 const shirtDesign = document.getElementById('design');
 
 document.getElementById('name').focus();
-
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
 
@@ -18,7 +18,6 @@ jobRole.addEventListener('change', event => {
 
 shirtDesign.addEventListener('input', event => {
   colorSelector.disabled = false;
-  let colorOptions = colorSelector.children;
   let selectedOption = event.target.value;
   for (let i = 0; i < colorOptions.length; i++ ) {
     let colorTheme = colorOptions[i].getAttribute('data-theme');
