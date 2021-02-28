@@ -6,7 +6,7 @@ document.getElementById('name').focus();
 otherRole.style.display = 'none';
 
 jobRole.addEventListener('change', event => {
-  if (jobRole.options[jobRole.selectedIndex].value === 'other') {
+  if (event.target.value === 'other') {
     otherRole.style.display = 'block';
   } else {
       otherRole.style.display = 'none';
