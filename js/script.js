@@ -10,11 +10,16 @@ const activityInfo = activtyRegistration.querySelectorAll('input');
 const activityLabel = activtyRegistration.querySelectorAll('label');
 const payment = document.getElementById('payment');
 const paymentMethod = payment.children;
+const creditCard = document.getElementById('credit-card');
+const payPal = document.getElementById('paypal');
+const bitCoin = document.getElementById('bitcoin');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
 paymentMethod[1].setAttribute('selected', 'selected');
+payPal.hidden = true;
+bitCoin.hidden = true;
 
 
 jobRole.addEventListener('change', event => {
@@ -62,4 +67,21 @@ activtyRegistration.addEventListener('change', event => {
       activityLabel[i].classList.remove('grayout');
     }
    }
+});
+
+payment.addEventListener ('change', event => {
+  let selectedPayment = event.target.value;
+  if (event.target.value === 'paypal') {
+    payPal.hidden = false;
+    creditCard.hidden = true;
+    bitCoin.hidden = true;
+  } else if (event.target.value === 'bitcoin') {
+    bitCoin.hidden = false;
+    creditCard.hidden = true;
+    payPal.hidden = true;
+  } else if (event.target.value === 'credit-card') {
+    creditCard.hidden = false;
+    payPal.hidden = true;
+    bitCoin.hidden = true;
+  }
 });
