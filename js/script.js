@@ -94,10 +94,30 @@ payment.addEventListener ('change', event => {
 
 form.addEventListener('submit', event => {
   const nameInput = fullName.value;
-  const nameRegex = /^^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  const nameRegex = /^(\w+\S+)$/;
   const nameHint = document.getElementById('name-hint');
   if (nameRegex.test(nameInput) === false) {  
     event.preventDefault();
     nameHint.style.display = 'block';
-    }
+  }
+  const emailInput = email.value;
+  const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+  const emailHint = document.getElementById('email-hint');
+  if (emailRegex.test(emailInput) === false) {
+    event.preventDefault();
+    emailHint.style.display = 'block';
+  }
+  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');//https://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
+  let activityHint = document.getElementById('activities-hint');
+  if (activitySelection.length === 0) {
+    event.preventDefault();
+    activityHint.style.display = 'block';
+  }
+  const cardInput = cardNumber.value;
+  const cardRegex = /^[1-9][0-9]{12,15}$/;
+  const cardHint = document.getElementById('cc-hint');
+  if (cardRegex.test(cardInput) === false) {
+    event.preventDefault();
+    cardHint.style.display = 'block';
+  }
 });
