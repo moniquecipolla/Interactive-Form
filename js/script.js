@@ -114,13 +114,13 @@ form.addEventListener('submit', event => {
     activityHint.style.display = 'block';
   }
   if (payment.value !== 'paypal' && payment.value !== 'bitcoin') {
-  const cardInput = cardNumber.value;
-  const cardRegex = /^[1-9][0-9]{12,15}$/;
-  const cardHint = document.getElementById('cc-hint');
-  if (cardRegex.test(cardInput) === false) {
-    event.preventDefault();
-    cardHint.style.display = 'block';
-  }
+    const cardInput = cardNumber.value;
+    const cardRegex = /^[1-9][0-9]{12,15}$/;
+    const cardHint = document.getElementById('cc-hint');
+    if (cardRegex.test(cardInput) === false) {
+      event.preventDefault();
+      cardHint.style.display = 'block';
+    }
     const zipInput = zipCode.value;
     const zipRegex = /^\d{5}$/;
     const zipHint = document.getElementById('zip-hint');
