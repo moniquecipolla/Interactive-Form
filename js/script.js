@@ -53,7 +53,7 @@ activtyRegistration.addEventListener('change', event => {
     if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
      activityInfo[i].disabled = true;
      activityLabel[i].classList.add('grayout');
-    } else {
+    } else if (event.target.checked === false) {
       activityInfo[i].disabled = false;
       activityLabel[i].classList.remove('grayout');
     }
