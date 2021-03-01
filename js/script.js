@@ -14,7 +14,7 @@ const paymentMethod = payment.children;
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
-paymentMethod[1].selected = true;
+paymentMethod[1].setAttribute('selected', 'selected');
 
 
 jobRole.addEventListener('change', event => {
