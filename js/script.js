@@ -8,10 +8,14 @@ const totalCost = document.getElementById('activities-cost');
 let finalCost = 0;
 const activityInfo = activtyRegistration.querySelectorAll('input');
 const activityLabel = activtyRegistration.querySelectorAll('label');
+const payment = document.getElementById('payment');
+const paymentMethod = payment.children;
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
+paymentMethod[1].selected = true;
+
 
 jobRole.addEventListener('change', event => {
   if (event.target.value === 'other') {
