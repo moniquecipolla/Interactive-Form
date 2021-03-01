@@ -108,7 +108,7 @@ form.addEventListener('submit', event => {
     emailHint.style.display = 'block';
   }
   const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');//https://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
-  let activityHint = document.getElementById('activities-hint');
+  const activityHint = document.getElementById('activities-hint');
   if (activitySelection.length === 0) {
     event.preventDefault();
     activityHint.style.display = 'block';
