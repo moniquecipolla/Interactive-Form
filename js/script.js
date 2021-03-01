@@ -70,15 +70,15 @@ activtyRegistration.addEventListener('change', event => {
 
 payment.addEventListener ('change', event => {
   let selectedPayment = event.target.value;
-  if (event.target.value === 'paypal') {
+  if (selectedPayment === 'paypal') {
     payPal.hidden = false;
     creditCard.hidden = true;
     bitCoin.hidden = true;
-  } else if (event.target.value === 'bitcoin') {
+  } else if (selectedPayment === 'bitcoin') {
     bitCoin.hidden = false;
     creditCard.hidden = true;
     payPal.hidden = true;
-  } else if (event.target.value === 'credit-card') {
+  } else if (selectedPayment === 'credit-card') {
     creditCard.hidden = false;
     payPal.hidden = true;
     bitCoin.hidden = true;
