@@ -13,6 +13,12 @@ const paymentMethod = payment.children;
 const creditCard = document.getElementById('credit-card');
 const payPal = document.getElementById('paypal');
 const bitCoin = document.getElementById('bitcoin');
+const fullName = document.getElementById('name');
+const email = document.getElementById('email');
+const cardNumber = document.getElementById('cc-num');
+const zipCode = document.getElementById('zip');
+const cardSecurity = document.getElementById('cvv');
+const form = document.querySelector('form');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -84,4 +90,14 @@ payment.addEventListener ('change', event => {
     payPal.hidden = true;
     bitCoin.hidden = true;
   }
+});
+
+form.addEventListener('submit', event => {
+  const nameInput = fullName.value;
+  const nameRegex = /^^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  const nameHint = document.getElementById('name-hint');
+  if (nameRegex.test(nameInput) === false) {  
+    event.preventDefault();
+    nameHint.style.display = 'block';
+    }
 });
