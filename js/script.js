@@ -55,6 +55,7 @@ activtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
+  
   for (let i = 0; i < activityInfo.length; i++) {
     let activityDate = activityInfo[i].getAttribute('data-day-and-time');
     let activityName = activityInfo[i].getAttribute('name');
