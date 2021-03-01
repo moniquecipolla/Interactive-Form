@@ -65,7 +65,7 @@ activtyRegistration.addEventListener('change', event => {
       activityInfo[i].disabled = false;
       activityLabel[i].classList.remove('grayout');
     }
-   }
+  }
 });
 
 payment.addEventListener ('change', event => {
