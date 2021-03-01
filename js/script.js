@@ -113,11 +113,27 @@ form.addEventListener('submit', event => {
     event.preventDefault();
     activityHint.style.display = 'block';
   }
+  if (payment.value !== 'paypal' && payment.value !== 'bitcoin') {
   const cardInput = cardNumber.value;
   const cardRegex = /^[1-9][0-9]{12,15}$/;
   const cardHint = document.getElementById('cc-hint');
   if (cardRegex.test(cardInput) === false) {
     event.preventDefault();
     cardHint.style.display = 'block';
+  }
+    const zipInput = zipCode.value;
+    const zipRegex = /^\d{5}$/;
+    const zipHint = document.getElementById('zip-hint');
+    if (zipRegex.test(zipInput) === false) {
+      event.preventDefault();
+      zipHint.style.display = 'block';
+    }
+    const securityInput = cardSecurity.value;
+    const securityRegex = /^(?!000)\d{3}$/;
+    const securityHint = document.getElementById('cvv-hint');
+    if (securityRegex.test(securityInput) === false) {
+      event.preventDefault();
+      securityHint.style.display = 'block';
+    }
   }
 });
