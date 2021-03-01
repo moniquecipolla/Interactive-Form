@@ -3,9 +3,10 @@ const otherRole = document.getElementById('other-job-role');
 const colorSelector = document.getElementById('color');
 const colorOptions = colorSelector.children;
 const shirtDesign = document.getElementById('design');
-const acitivtyRegistration = document.getElementById('activities');
+const activtyRegistration = document.getElementById('activities');
 const totalCost = document.getElementById('activities-cost');
 let finalCost = 0;
+const activityInfo = activtyRegistration.querySelectorAll('input');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -34,8 +35,10 @@ shirtDesign.addEventListener('input', event => {
   }
 });
 
-acitivtyRegistration.addEventListener('change', event => {
+activtyRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
+  let selectedDate = event.target.getAttribute('data-day-and-time');
+  let selectedActivity = event.target.getAttribute('name');
   let costNumber = +costText;
   if (event.target.checked === true) {
     finalCost += costNumber;
@@ -43,4 +46,13 @@ acitivtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
+  for (let i = 0; i < activityInfo.length; i++) {
+    let activityDate = activityInfo[i].getAttribute('data-day-and-time');
+    let activityName = activityInfo[i].getAttribute('name');
+    if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
+     activityInfo[i].disabled = true;
+    } else {
+      activityInfo[i].disabled = false;
+    }
+   }
 });
