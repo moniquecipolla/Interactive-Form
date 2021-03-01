@@ -46,8 +46,6 @@ shirtDesign.addEventListener('input', event => {
 
 activtyRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
-  let selectedDate = event.target.getAttribute('data-day-and-time');
-  let selectedActivity = event.target.getAttribute('name');
   let costNumber = +costText;
   if (event.target.checked === true) {
     finalCost += costNumber;
@@ -55,8 +53,10 @@ activtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
-  
+
   for (let i = 0; i < activityInfo.length; i++) {
+    let selectedDate = event.target.getAttribute('data-day-and-time');
+    let selectedActivity = event.target.getAttribute('name');
     let activityDate = activityInfo[i].getAttribute('data-day-and-time');
     let activityName = activityInfo[i].getAttribute('name');
     if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
