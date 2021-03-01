@@ -21,7 +21,6 @@ paymentMethod[1].setAttribute('selected', 'selected');
 payPal.hidden = true;
 bitCoin.hidden = true;
 
-
 jobRole.addEventListener('change', event => {
   if (event.target.value === 'other') {
     otherRole.style.display = 'block';
