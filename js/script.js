@@ -3,6 +3,9 @@ const otherRole = document.getElementById('other-job-role');
 const colorSelector = document.getElementById('color');
 const colorOptions = colorSelector.children;
 const shirtDesign = document.getElementById('design');
+const acitivtyRegistration = document.getElementById('activities');
+const totalCost = document.getElementById('activities-cost');
+let finalTotal = 0;
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -29,4 +32,15 @@ shirtDesign.addEventListener('input', event => {
       colorOptions[i].selected = false;
     }
   }
+});
+
+acitivtyRegistration.addEventListener('change', event => {
+  let costText = event.target.getAttribute('data-cost');
+  let costNumber = parseInt(costText);
+  if (event.target.checked === true) {
+    finalTotal += costNumber;
+  } else {
+    finalTotal -= costNumber;
+  }
+  totalCost.innerHTML = `Total: $${finalTotal}`;
 });
