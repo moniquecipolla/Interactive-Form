@@ -7,6 +7,7 @@ const activtyRegistration = document.getElementById('activities');
 const totalCost = document.getElementById('activities-cost');
 let finalCost = 0;
 const activityInfo = activtyRegistration.querySelectorAll('input');
+const activityLabel = activtyRegistration.querySelectorAll('label');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -51,8 +52,10 @@ activtyRegistration.addEventListener('change', event => {
     let activityName = activityInfo[i].getAttribute('name');
     if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
      activityInfo[i].disabled = true;
+     activityLabel[i].classList.add('grayout');
     } else {
       activityInfo[i].disabled = false;
+      activityLabel[i].classList.remove('grayout');
     }
    }
 });

@@ -420,6 +420,11 @@ button:hover {
   margin-top: 10px;
 }
 
+.grayout { /* from https://stackoverflow.com/questions/5081690/how-to-gray-out-a-html-element */
+  opacity: 0.6; /* Real browsers */
+  filter: alpha(opacity = 60); /* MSIE */
+}
+
 /* ================================= 
   Payment section styles
 ==================================== */
