@@ -5,7 +5,7 @@ const colorOptions = colorSelector.children;
 const shirtDesign = document.getElementById('design');
 const acitivtyRegistration = document.getElementById('activities');
 const totalCost = document.getElementById('activities-cost');
-let finalTotal = 0;
+let finalCost = 0;
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -36,11 +36,11 @@ shirtDesign.addEventListener('input', event => {
 
 acitivtyRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
-  let costNumber = parseInt(costText);
+  let costNumber = +costText;
   if (event.target.checked === true) {
-    finalTotal += costNumber;
+    finalCost += costNumber;
   } else {
-    finalTotal -= costNumber;
+    finalCost -= costNumber;
   }
-  totalCost.innerHTML = `Total: $${finalTotal}`;
+  totalCost.innerHTML = `Total: $${finalCost}`;
 });
