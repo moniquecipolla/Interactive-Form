@@ -421,8 +421,8 @@ button:hover {
 }
 
 .grayout { /* from https://stackoverflow.com/questions/5081690/how-to-gray-out-a-html-element */
-  opacity: 0.6; /* Real browsers */
-  filter: alpha(opacity = 60); /* MSIE */
+  opacity: 0.6;
+  filter: alpha(opacity = 60);
 }
 
 /* ================================= 
