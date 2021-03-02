@@ -92,48 +92,95 @@ payment.addEventListener ('change', event => {
   }
 });
 
-form.addEventListener('submit', event => {
+function nameValidator() {
   const nameInput = fullName.value;
-  const nameRegex = /^(\w+\S+)$/;
-  const nameHint = document.getElementById('name-hint');
-  if (nameRegex.test(nameInput) === false) {  
-    event.preventDefault();
-    nameHint.style.display = 'block';
+  const blankName = '';
+  if (nameInput === blankName) {
+    return false;
   }
+}
+
+function emailValidator() {
   const emailInput = email.value;
   const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
-  const emailHint = document.getElementById('email-hint');
   if (emailRegex.test(emailInput) === false) {
+    return false;
+  }
+}
+
+function activityValidator() {
+  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');//https://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
+  if (activitySelection.length === 0)
+    return false;
+}
+
+function cardValidator() {
+  const cardInput = cardNumber.value;
+  const cardRegex = /^[1-9][0-9]{12,15}$/;
+  if (cardRegex.test(cardInput) === false) {
+    return false;
+  }
+}
+
+function zipValidator() {
+  const zipInput = zipCode.value;
+  const zipRegex = /^\d{5}$/;
+  if (zipRegex.test(zipInput) === false) {
+    return false;
+  }
+}
+
+function securityValidator() {
+  const securityInput = cardSecurity.value;
+  const securityRegex = /^(?!000)\d{3}$/;
+  if (securityRegex.test(securityInput) === false) {
+    return false;
+  }
+}
+
+form.addEventListener('submit', event => {
+  const nameHint = document.getElementById('name-hint');
+  const emailHint = document.getElementById('email-hint');
+  const activityHint = document.getElementById('activities-hint');
+  const cardHint = document.getElementById('cc-hint');
+  const zipHint = document.getElementById('zip-hint');
+  const securityHint = document.getElementById('cvv-hint');
+  if (nameValidator() === false) {  
+    event.preventDefault();
+    nameHint.style.display = 'block';
+  } else {
+    nameHint.style.display = 'none';
+  }
+  if (emailValidator() === false) {
     event.preventDefault();
     emailHint.style.display = 'block';
+  } else {
+    emailHint.style.display = 'none';
   }
-  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');//https://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
-  const activityHint = document.getElementById('activities-hint');
-  if (activitySelection.length === 0) {
+  if (activityValidator() === false) {
     event.preventDefault();
     activityHint.style.display = 'block';
+  } else {
+    activityHint.style.display = 'none';
   }
   if (payment.value !== 'paypal' && payment.value !== 'bitcoin') {
-    const cardInput = cardNumber.value;
-    const cardRegex = /^[1-9][0-9]{12,15}$/;
-    const cardHint = document.getElementById('cc-hint');
-    if (cardRegex.test(cardInput) === false) {
+    if (cardValidator() === false) {
       event.preventDefault();
       cardHint.style.display = 'block';
+    } else {
+      cardHint.style.display = 'none';
     }
-    const zipInput = zipCode.value;
-    const zipRegex = /^\d{5}$/;
-    const zipHint = document.getElementById('zip-hint');
-    if (zipRegex.test(zipInput) === false) {
+    if (zipValidator() === false) {
       event.preventDefault();
       zipHint.style.display = 'block';
+    } else {
+      zipHint.style.display = 'none';
     }
-    const securityInput = cardSecurity.value;
-    const securityRegex = /^(?!000)\d{3}$/;
-    const securityHint = document.getElementById('cvv-hint');
-    if (securityRegex.test(securityInput) === false) {
+    if (securityValidator() === false) {
       event.preventDefault();
       securityHint.style.display = 'block';
+    } else {
+      securityHint.style.display = 'none';
     }
   }
 });
