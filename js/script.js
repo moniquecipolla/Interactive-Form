@@ -144,6 +144,14 @@ function securityValidator() {
   }
 }
 
+fullName.addEventListener ('input', () => {
+  if (nameValidator() === false) {
+    nameHint.style.display = 'block';
+  } else {
+    nameHint.style.display = 'none';
+  }
+});
+
 email.addEventListener ('keyup', () => {
   if (emailValidator() === false) {
     emailHint.style.display = 'block';
