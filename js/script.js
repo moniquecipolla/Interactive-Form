@@ -19,6 +19,12 @@ const cardNumber = document.getElementById('cc-num');
 const zipCode = document.getElementById('zip');
 const cardSecurity = document.getElementById('cvv');
 const form = document.querySelector('form');
+const nameHint = document.getElementById('name-hint');
+const emailHint = document.getElementById('email-hint');
+const activityHint = document.getElementById('activities-hint');
+const cardHint = document.getElementById('cc-hint');
+const zipHint = document.getElementById('zip-hint');
+const securityHint = document.getElementById('cvv-hint');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -138,13 +144,23 @@ function securityValidator() {
   }
 }
 
+fullName.addEventListener ('keyup', () => {
+  if (nameValidator() === false) {  
+    nameHint.style.display = 'block';
+  } else {
+    nameHint.style.display = 'none';
+  }
+});
+
+email.addEventListener ('keyup', () => {
+  if (emailValidator() === false) {
+    emailHint.style.display = 'block';
+  } else {
+    emailHint.style.display = 'none';
+  }
+});
+
 form.addEventListener('submit', event => {
-  const nameHint = document.getElementById('name-hint');
-  const emailHint = document.getElementById('email-hint');
-  const activityHint = document.getElementById('activities-hint');
-  const cardHint = document.getElementById('cc-hint');
-  const zipHint = document.getElementById('zip-hint');
-  const securityHint = document.getElementById('cvv-hint');
   if (nameValidator() === false) {  
     event.preventDefault();
     nameHint.style.display = 'block';
