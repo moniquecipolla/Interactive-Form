@@ -160,6 +160,30 @@ email.addEventListener ('keyup', () => {
   }
 });
 
+cardNumber.addEventListener ('keyup', () => {
+  if (cardValidator() === false) {
+    cardHint.style.display = 'block';
+  } else {
+    cardHint.style.display = 'none';
+  }
+});
+
+zipCode.addEventListener ('keyup', () => {
+  if (zipValidator() === false) {
+    zipHint.style.display = 'block';
+  } else {
+    zipHint.style.display = 'none';
+  }
+});
+
+cardSecurity.addEventListener ('keyup', () => {
+  if (securityValidator() === false) {
+    securityHint.style.display = 'block';
+  } else {
+    securityHint.style.display = 'none';
+  }
+});
+
 form.addEventListener('submit', event => {
   if (nameValidator() === false) {  
     event.preventDefault();
