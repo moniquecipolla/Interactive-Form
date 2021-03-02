@@ -115,7 +115,7 @@ function emailValidator() {
 }
 
 function activityValidator() {
-  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');//https://stackoverflow.com/questions/11787665/making-sure-at-least-one-checkbox-is-checked
+  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
   if (activitySelection.length === 0)
     return false;
 }
