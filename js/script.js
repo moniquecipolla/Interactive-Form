@@ -144,7 +144,7 @@ function securityValidator() {
   }
 }
 
-fullName.addEventListener ('input', () => {
+fullName.addEventListener ('keyup', () => {
   if (nameValidator() === false) {
     nameHint.style.display = 'block';
   } else {
