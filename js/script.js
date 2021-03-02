@@ -100,8 +100,7 @@ payment.addEventListener ('change', event => {
 
 function nameValidator() {
   const nameInput = fullName.value;
-  const blankName = '';
-  if (nameInput === blankName) {
+  if (nameInput === '') {
     return false;
   }
 }
