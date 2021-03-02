@@ -100,7 +100,8 @@ payment.addEventListener ('change', event => {
 
 function nameValidator() {
   const nameInput = fullName.value;
-  if (nameInput === '') {
+  const nameRegex = /^\s+$/;
+  if (nameRegex.test(nameInput) === true || nameInput === '') {
     return false;
   }
 }
@@ -142,14 +143,6 @@ function securityValidator() {
     return false;
   }
 }
-
-fullName.addEventListener ('keyup', () => {
-  if (nameValidator() === false) {  
-    nameHint.style.display = 'block';
-  } else {
-    nameHint.style.display = 'none';
-  }
-});
 
 email.addEventListener ('keyup', () => {
   if (emailValidator() === false) {
