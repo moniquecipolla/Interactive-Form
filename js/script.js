@@ -298,7 +298,7 @@ Adding an event listener for submitting the form.
 It calls all the helper functions.
 If any of the helper functions return "false", it prevents the default behavior (form refresh).
 There's a separate conditional for the payment field that will only run the payment helper functions if a credit card is the selected payment type.
-If any of the credit card helper functions return "false", the prevent the default behavior (form refresh).
+If any of the credit card helper functions return "false", they prevent the default behavior (form refresh).
 */
 form.addEventListener('submit', event => {
   nameValidator();
