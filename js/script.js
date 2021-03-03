@@ -96,7 +96,7 @@ activityRegistration.addEventListener('change', event => {
 /*
 The loop below checks to see if the selected activity matches with the date/time of any other activities.
 If any other activities match with the date/time of the selected activity, the other activity is grayed out and rendered unselectable.
-Else, if someone de-selects an acitivity, any conflicting activities are un-grayed and rendered selectable once more.
+Else, if someone de-selects an activity, any conflicting activities are un-grayed and rendered selectable once more.
 */
   for (let i = 0; i < activityInfo.length; i++) {
     let selectedDate = event.target.getAttribute('data-day-and-time');
