@@ -104,8 +104,8 @@ Else, if someone de-selects an acitivity, any conflicting activities are un-gray
     let activityDate = activityInfo[i].getAttribute('data-day-and-time');
     let activityName = activityInfo[i].getAttribute('name');
     if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
-     activityInfo[i].disabled = true;
-     activityLabel[i].classList.add('grayout');
+      activityInfo[i].disabled = true;
+      activityLabel[i].classList.add('grayout');
     } else if (event.target.checked === false && selectedDate === activityDate) {
       activityInfo[i].disabled = false;
       activityLabel[i].classList.remove('grayout');
