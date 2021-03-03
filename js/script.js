@@ -227,6 +227,7 @@ It provides conditional error messages, as described below.
 */
 function zipValidator() {
   const zipInput = zipCode.value;
+  const nonDigitRegex = /\D/;
   const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
   if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits.
@@ -241,7 +242,14 @@ function zipValidator() {
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
     return false; //If the zip code is more than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
-  } else {
+  } else if (nonDigitRegex.test(zipInput) === true) {
+    zipHint.textContent = 'Zip Code must be 5 digits. You have entered non-digit characters.'
+    zipHint.style.display = 'block';
+    zipCode.parentElement.classList.add('not-valid');
+    zipCode.parentElement.classList.remove('valid');
+    return false;
+  } 
+  else {
     zipHint.style.display = 'none';
     zipCode.parentElement.classList.add('valid');
     zipCode.parentElement.classList.remove('not-valid'); //Else if the zip code is valid, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
