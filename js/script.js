@@ -251,7 +251,7 @@ function zipValidator() {
 }
 
 /*
-securityValidator checks that the card CVV/security code is a 3 digit string.
+cvvValidator checks that the card CVV/security code is a 3 digit string.
 If it's not a valid CVV/security code, the function shows the security/CVV hint.
 If it's not a valid CVV/security code, the function adds the "not-valid" class to the parent element and returns "false".
 Else if it's a valid CVV/security code, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
