@@ -127,7 +127,7 @@ payment.addEventListener ('change', event => {
     bitCoin.hidden = false;
     creditCard.hidden = true;
     payPal.hidden = true;
-  } else if (selectedPayment === 'credit-card') { //selecting Credit Card hides CC and BitCoin.
+  } else if (selectedPayment === 'credit-card') { //selecting Credit Card hides PayPal and BitCoin.
     creditCard.hidden = false;
     payPal.hidden = true;
     bitCoin.hidden = true;
