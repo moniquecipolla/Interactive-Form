@@ -230,11 +230,11 @@ function zipValidator() {
   const nonDigitRegex = /\D/; //This variable stores the regex for non-digit characters.
   const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
-  if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits.
+  if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.'
-  } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits.
+  } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered more than 5 digits.'
-  } else if (nonDigitRegex.test(zipInput) === true) { //This checks if the zip code entered has any non-digit characters.
+  } else if (nonDigitRegex.test(zipInput) === true) { //This checks if the zip code entered has any non-digit characters and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered non-digit characters.'
   }
   if (zipRegexFewer.test(zipInput) === true || zipRegexGreater.test(zipInput) === true || nonDigitRegex.test(zipInput) === true) {
