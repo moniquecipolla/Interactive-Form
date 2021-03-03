@@ -25,6 +25,7 @@ const activityHint = document.getElementById('activities-hint');
 const cardHint = document.getElementById('cc-hint');
 const zipHint = document.getElementById('zip-hint');
 const securityHint = document.getElementById('cvv-hint');
+const acitivityCheckboxes = document.querySelectorAll('input[type=checkbox]');
 
 document.getElementById('name').focus();
 otherRole.style.display = 'none';
@@ -32,6 +33,15 @@ colorSelector.disabled = true;
 paymentMethod[1].setAttribute('selected', 'selected');
 payPal.hidden = true;
 bitCoin.hidden = true;
+
+for (i = 0; i < acitivityCheckboxes.length; i++) {  
+  acitivityCheckboxes[i].addEventListener ('focus', event => {
+    event.target.parentElement.classList.add('focus');
+  });
+  acitivityCheckboxes[i].addEventListener ('blur', event => {
+    event.target.parentElement.classList.remove('focus');
+  });
+}
 
 jobRole.addEventListener('change', event => {
   if (event.target.value === 'other') {
@@ -102,7 +112,14 @@ function nameValidator() {
   const nameInput = fullName.value;
   const nameRegex = /^\s+$/;
   if (nameRegex.test(nameInput) === true || nameInput === '') {
+    nameHint.style.display = 'block';
+    fullName.parentElement.classList.add('not-valid');
+    fullName.parentElement.classList.remove('valid');
     return false;
+  } else {
+    nameHint.style.display = 'none';
+    fullName.parentElement.classList.add('valid');
+    fullName.parentElement.classList.remove('not-valid');
   }
 }
 
@@ -110,21 +127,39 @@ function emailValidator() {
   const emailInput = email.value;
   const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
   if (emailRegex.test(emailInput) === false) {
+    emailHint.style.display = 'block';
+    email.parentElement.classList.add('not-valid');
+    email.parentElement.classList.remove('valid');
     return false;
+  } else {
+    emailHint.style.display = 'none';
+    email.parentElement.classList.add('valid');
+    email.parentElement.classList.remove('not-valid');
   }
 }
 
 function activityValidator() {
   const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
-  if (activitySelection.length === 0)
+  if (activitySelection.length === 0) {
+    activityHint.style.display = 'block';
     return false;
-}
+  } else {
+    activityHint.style.display = 'none';
+  }
+} 
 
 function cardValidator() {
   const cardInput = cardNumber.value;
   const cardRegex = /^[1-9][0-9]{12,15}$/;
   if (cardRegex.test(cardInput) === false) {
+    cardHint.style.display = 'block';
+    cardNumber.parentElement.classList.add('not-valid');
+    cardNumber.parentElement.classList.remove('valid');
     return false;
+  } else {
+    cardHint.style.display = 'none';
+    cardNumber.parentElement.classList.add('valid');
+    cardNumber.parentElement.classList.remove('not-valid');
   }
 }
 
@@ -132,7 +167,14 @@ function zipValidator() {
   const zipInput = zipCode.value;
   const zipRegex = /^\d{5}$/;
   if (zipRegex.test(zipInput) === false) {
+    zipHint.style.display = 'block';
+    zipCode.parentElement.classList.add('not-valid');
+    zipCode.parentElement.classList.remove('valid');
     return false;
+  } else {
+    zipHint.style.display = 'none';
+    zipCode.parentElement.classList.add('valid');
+    zipCode.parentElement.classList.remove('not-valid');
   }
 }
 
@@ -140,87 +182,38 @@ function securityValidator() {
   const securityInput = cardSecurity.value;
   const securityRegex = /^(?!000)\d{3}$/;
   if (securityRegex.test(securityInput) === false) {
+    securityHint.style.display = 'block';
+    cardSecurity.parentElement.classList.add('not-valid');
+    cardSecurity.parentElement.classList.remove('valid');
     return false;
+  } else {
+    securityHint.style.display = 'none';
+    cardSecurity.parentElement.classList.add('valid');
+    cardSecurity.parentElement.classList.remove('not-valid');
   }
 }
 
 fullName.addEventListener ('keyup', () => {
-  if (nameValidator() === false) {
-    nameHint.style.display = 'block';
-  } else {
-    nameHint.style.display = 'none';
-  }
+  nameValidator();
 });
 
 email.addEventListener ('keyup', () => {
-  if (emailValidator() === false) {
-    emailHint.style.display = 'block';
-  } else {
-    emailHint.style.display = 'none';
-  }
-});
-
-cardNumber.addEventListener ('keyup', () => {
-  if (cardValidator() === false) {
-    cardHint.style.display = 'block';
-  } else {
-    cardHint.style.display = 'none';
-  }
-});
-
-zipCode.addEventListener ('keyup', () => {
-  if (zipValidator() === false) {
-    zipHint.style.display = 'block';
-  } else {
-    zipHint.style.display = 'none';
-  }
-});
-
-cardSecurity.addEventListener ('keyup', () => {
-  if (securityValidator() === false) {
-    securityHint.style.display = 'block';
-  } else {
-    securityHint.style.display = 'none';
-  }
+  emailValidator();
 });
 
 form.addEventListener('submit', event => {
-  if (nameValidator() === false) {  
+  nameValidator();
+  emailValidator();
+  activityValidator();
+  if (nameValidator() === false || emailValidator() === false || activityValidator() === false) {  
     event.preventDefault();
-    nameHint.style.display = 'block';
-  } else {
-    nameHint.style.display = 'none';
-  }
-  if (emailValidator() === false) {
-    event.preventDefault();
-    emailHint.style.display = 'block';
-  } else {
-    emailHint.style.display = 'none';
-  }
-  if (activityValidator() === false) {
-    event.preventDefault();
-    activityHint.style.display = 'block';
-  } else {
-    activityHint.style.display = 'none';
   }
   if (payment.value !== 'paypal' && payment.value !== 'bitcoin') {
-    if (cardValidator() === false) {
+    cardValidator();
+    zipValidator();
+    securityValidator();
+    if (cardValidator() === false || zipValidator() === false || securityValidator() === false) {
       event.preventDefault();
-      cardHint.style.display = 'block';
-    } else {
-      cardHint.style.display = 'none';
-    }
-    if (zipValidator() === false) {
-      event.preventDefault();
-      zipHint.style.display = 'block';
-    } else {
-      zipHint.style.display = 'none';
-    }
-    if (securityValidator() === false) {
-      event.preventDefault();
-      securityHint.style.display = 'block';
-    } else {
-      securityHint.style.display = 'none';
     }
   }
 });
