@@ -5,10 +5,10 @@ const otherRole = document.getElementById('other-job-role');
 const colorSelector = document.getElementById('color');
 const colorOptions = colorSelector.children;
 const shirtDesign = document.getElementById('design');
-const activtyRegistration = document.getElementById('activities');
-const acitivityCheckboxes = document.querySelectorAll('input[type=checkbox]');
-const activityInfo = activtyRegistration.querySelectorAll('input');
-const activityLabel = activtyRegistration.querySelectorAll('label');
+const activityRegistration = document.getElementById('activities');
+const activityCheckboxes = document.querySelectorAll('input[type=checkbox]');
+const activityInfo = activityRegistration.querySelectorAll('input');
+const activityLabel = activityRegistration.querySelectorAll('label');
 const activityHint = document.getElementById('activities-hint');
 const totalCost = document.getElementById('activities-cost');
 let finalCost = 0;
@@ -37,11 +37,11 @@ payPal.hidden = true;
 bitCoin.hidden = true;
 
 //Setting up my page defaults for tabbing through activity checkboxes for accessibility.
-for (i = 0; i < acitivityCheckboxes.length; i++) {  
-  acitivityCheckboxes[i].addEventListener ('focus', event => {
+for (i = 0; i < activityCheckboxes.length; i++) {  
+  activityCheckboxes[i].addEventListener ('focus', event => {
     event.target.parentElement.classList.add('focus'); //Adds the focus class when you tab or click onto an activity checkbox.
   });
-  acitivityCheckboxes[i].addEventListener ('blur', event => {
+  activityCheckboxes[i].addEventListener ('blur', event => {
     event.target.parentElement.classList.remove('focus'); //Removes the focus class when you tab or click away from an activity checkbox.
   });
 }
@@ -84,7 +84,7 @@ Adding an event listener for activity registration.
 If someone selects an activity, the final cost is updated accordingly by adding the cost amount.
 Else, if someone deselects an activity, the final cost is updated accordingly by subtracting the cost amount.
 */
-activtyRegistration.addEventListener('change', event => {
+activityRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
   let costNumber = +costText;
   if (event.target.checked === true) {
@@ -186,13 +186,13 @@ Else, if the activity is valid, the function adds the "valid" class and removes 
 function activityValidator() {
   if (form.querySelectorAll('input[type=checkbox]:checked').length === 0) {
     activityHint.style.display = 'block';
-    activtyRegistration.classList.add('not-valid');
-    activtyRegistration.classList.remove('valid');
+    activityRegistration.classList.add('not-valid');
+    activityRegistration.classList.remove('valid');
     return false;
   } else {
     activityHint.style.display = 'none';
-    activtyRegistration.classList.add('valid');
-    activtyRegistration.classList.remove('not-valid');
+    activityRegistration.classList.add('valid');
+    activityRegistration.classList.remove('not-valid');
   }
 } 
 
