@@ -81,8 +81,8 @@ shirtDesign.addEventListener('input', event => {
 
 /*
 Adding an event listener for activity registration.
-If someone selects an activity, the total cost is updated accordingly by adding the cost amount.
-Else, if someone deselects an activity, the total cost is updated accordingly by subtracting the cost amount.
+If someone selects an activity, the final cost is updated accordingly by adding the cost amount.
+Else, if someone deselects an activity, the final cost is updated accordingly by subtracting the cost amount.
 */
 activtyRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
