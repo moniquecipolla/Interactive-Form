@@ -227,7 +227,7 @@ It provides conditional error messages, as described below.
 */
 function zipValidator() {
   const zipInput = zipCode.value;
-  const nonDigitRegex = /\D/; //This variables stores the regex for non-digit characters.
+  const nonDigitRegex = /\D/; //This variable stores the regex for non-digit characters.
   const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
   if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits.
