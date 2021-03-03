@@ -146,9 +146,7 @@ If it's an empty string or blank spaces, the function adds the "not-valid" class
 Else, if it's not an empty string or blank space, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
 */
 function nameValidator() { 
-  const nameInput = fullName.value;
-  const nameRegex = /^\s+$/;
-  if (nameRegex.test(nameInput) === true || nameInput === '') {
+  if (/^\s+$/.test(fullName.value) === true || fullName.value === '') {
     nameHint.style.display = 'block'; 
     fullName.parentElement.classList.add('not-valid');
     fullName.parentElement.classList.remove('valid');
@@ -167,9 +165,7 @@ If it's an invalid email, the function adds the "not-valid" class to the parent 
 Else, if it is a valid email, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
 */
 function emailValidator() {
-  const emailInput = email.value;
-  const emailRegex = /^[^@]+@[^@.]+\.(com)+$/i; //Credit: TreeHouse Unit 3: Validating a Form (https://teamtreehouse.com/library/validating-an-email)
-  if (emailRegex.test(emailInput) === false) {
+  if (/^[^@]+@[^@.]+\.(com)+$/i.test(email.value) === false) { //Credit: TreeHouse Unit 3: Validating a Form (https://teamtreehouse.com/library/validating-an-email)
     emailHint.style.display = 'block';
     email.parentElement.classList.add('not-valid');
     email.parentElement.classList.remove('valid');
@@ -188,8 +184,7 @@ If no activity box has been checked, the function adds the "not-valid" class to 
 Else, if the activity is valid, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
 */
 function activityValidator() {
-  const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
-  if (activitySelection.length === 0) {
+  if (form.querySelectorAll('input[type=checkbox]:checked').length === 0) {
     activityHint.style.display = 'block';
     activtyRegistration.classList.add('not-valid');
     activtyRegistration.classList.remove('valid');
@@ -208,9 +203,7 @@ If it's an invalid card number, the function adds the "not-valid" class to the p
 Else, if it's a valid card number, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
 */
 function cardValidator() {
-  const cardInput = cardNumber.value;
-  const cardRegex = /^\d{13,16}$/;
-  if (cardRegex.test(cardInput) === false) {
+  if (/^\d{13,16}$/.test(cardNumber.value) === false) {
     cardHint.style.display = 'block';
     cardNumber.parentElement.classList.add('not-valid');
     cardNumber.parentElement.classList.remove('valid');
@@ -227,18 +220,14 @@ zipValidator checks that the zip code is a 5 digit string.
 It provides conditional error messages, as described below.
 */
 function zipValidator() {
-  const zipInput = zipCode.value;
-  const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
-  const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
-  const nonDigitRegex = /\D/; //This variable stores the regex for non-digit characters or spaces.
-  if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits and updates the zip code hint accordingly.
+  if (/^\d{0,4}$/.test(zipCode.value) === true) { //This checks if the zip code entered is fewer than 5 digits and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.';
-  } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits and updates the zip code hint accordingly.
+  } else if (/^\d{6,}$/.test(zipCode.value) === true) { //This checks if the zip code entered is more than 5 digits and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered more than 5 digits.';
-  } else if (nonDigitRegex.test(zipInput) === true) { //This checks if the zip code entered has any non-digit characters and updates the zip code hint accordingly.
+  } else if (/\D/.test(zipCode.value) === true) { //This checks if the zip code entered has any non-digit characters and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered non-digit characters or spaces.';
   }
-  if (zipRegexFewer.test(zipInput) === true || zipRegexGreater.test(zipInput) === true || nonDigitRegex.test(zipInput) === true) {
+  if (/^\d{0,4}$/.test(zipCode.value) === true || /^\d{6,}$/.test(zipCode.value) === true || /\D/.test(zipCode.value) === true) {
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
@@ -257,9 +246,7 @@ If it's not a valid CVV/security code, the function adds the "not-valid" class t
 Else if it's a valid CVV/security code, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
 */
 function cvvValidator() {
-  const cvvInput = cvv.value;
-  const cvvRegex = /^\d{3}$/;
-  if (cvvRegex.test(cvvInput) === false) {
+  if (/^\d{3}$/.test(cvv.value) === false) {
     cvvHint.style.display = 'block';
     cvv.parentElement.classList.add('not-valid');
     cvv.parentElement.classList.remove('valid');
