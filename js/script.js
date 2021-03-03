@@ -93,10 +93,10 @@ activtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
-  
+
 /*
-The loop below checks to see if the selected activity matches with the date of any other activities.
-If any other activities match with the selected activity, the other activity is grayed out and rendered unselectable.
+The loop below checks to see if the selected activity matches with the date/time of any other activities.
+If any other activities match with the date/time of the selected activity, the other activity is grayed out and rendered unselectable.
 Else, if someone de-selects an acitivity, any conflicting activities are un-grayed and rendered selectable once more.
 */
   for (let i = 0; i < activityInfo.length; i++) {
@@ -141,7 +141,7 @@ These can be called when creating event listeners to help validate whether a req
 */
 
 /*
-nameValidator checks that the Name field is not a bunch of spaces or an empty string.
+nameValidator checks that the Name field is not blank spaces or an empty string.
 If it's an empty string or blank spaces, the function shows the name hint.
 If it's an empty string or blank spaces, the function adds the "not-valid" class to the parent element and returns "false".
 Else, if it's not an empty string or blank space, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
@@ -228,9 +228,9 @@ It provides conditional error messages, as described below.
 */
 function zipValidator() {
   const zipInput = zipCode.value;
-  const nonDigitRegex = /\D/; //This variable stores the regex for non-digit characters.
   const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
+  const nonDigitRegex = /\D/; //This variable stores the regex for non-digit characters.
   if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits and updates the zip code hint accordingly.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.'
   } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits and updates the zip code hint accordingly.
@@ -299,7 +299,7 @@ cardSecurity.addEventListener ('keyup', () => {
 Adding an event listener for submitting the form.
 It calls all the helper functions.
 If any of the helper functions return "false", it prevents the default behavior (form refresh).
-There's a separate conditional for the payment field that will only run the payment helper functions if a credit card is the selected payment type.
+There's a separate conditional for the payment field that will only run the credit card helper functions if a credit card is the selected payment type.
 If any of the credit card helper functions return "false", they prevent the default behavior (form refresh).
 */
 form.addEventListener('submit', event => {
