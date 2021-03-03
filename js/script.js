@@ -25,8 +25,8 @@ const cardNumber = document.getElementById('cc-num');
 const cardHint = document.getElementById('cc-hint');
 const zipCode = document.getElementById('zip');
 const zipHint = document.getElementById('zip-hint');
-const cardSecurity = document.getElementById('cvv');
-const securityHint = document.getElementById('cvv-hint');
+const cvv = document.getElementById('cvv');
+const cvvHint = document.getElementById('cvv-hint');
 
 //Setting up my page defaults like focusing on the name field and hiding/disabling fields that should be hidden/disabled.
 fullName.focus();
@@ -256,18 +256,18 @@ If it's not a valid CVV/security code, the function shows the security/CVV hint.
 If it's not a valid CVV/security code, the function adds the "not-valid" class to the parent element and returns "false".
 Else if it's a valid CVV/security code, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
 */
-function securityValidator() {
-  const securityInput = cardSecurity.value;
-  const securityRegex = /^\d{3}$/;
-  if (securityRegex.test(securityInput) === false) {
-    securityHint.style.display = 'block';
-    cardSecurity.parentElement.classList.add('not-valid');
-    cardSecurity.parentElement.classList.remove('valid');
+function cvvValidator() {
+  const cvvInput = cvv.value;
+  const cvvRegex = /^\d{3}$/;
+  if (cvvRegex.test(cvvInput) === false) {
+    cvvHint.style.display = 'block';
+    cvv.parentElement.classList.add('not-valid');
+    cvv.parentElement.classList.remove('valid');
     return false;
   } else {
-    securityHint.style.display = 'none';
-    cardSecurity.parentElement.classList.add('valid');
-    cardSecurity.parentElement.classList.remove('not-valid');
+    cvvHint.style.display = 'none';
+    cvv.parentElement.classList.add('valid');
+    cvv.parentElement.classList.remove('not-valid');
   }
 }
 
@@ -291,8 +291,8 @@ zipCode.addEventListener ('keyup', () => {
   zipValidator();
 });
 
-cardSecurity.addEventListener ('keyup', () => {
-  securityValidator();
+cvv.addEventListener ('keyup', () => {
+  cvvValidator();
 });
 
 /*
@@ -312,8 +312,8 @@ form.addEventListener('submit', event => {
   if (payment.value !== 'paypal' && payment.value !== 'bitcoin') {
     cardValidator();
     zipValidator();
-    securityValidator();
-    if (cardValidator() === false || zipValidator() === false || securityValidator() === false) {
+    cvvValidator();
+    if (cardValidator() === false || zipValidator() === false || cvvValidator() === false) {
       event.preventDefault();
     }
   }
