@@ -160,7 +160,7 @@ function nameValidator() {
   }
 }
 /*
-emailvalidator checks that the email field is a valid email.
+emailvalidator checks that the email field is a valid email with a .com address.
 If it's an invalid email, the function shows the email hint.
 If it's an invalid email, the function adds the "not-valid" class to the parent element and returns "false".
 Else, if it is a valid email, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
