@@ -204,7 +204,7 @@ function activityValidator() {
 cardValidator checks that the card number is a string of digits between 13 and 16 numbers.
 If it's an invalid card number, the function shows the card hint.
 If it's an invalid card number, the function adds the "not-valid" class to the parent element and returns "false".
-Else, if it's a valid card number, the function the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
+Else, if it's a valid card number, the function adds the "valid" class and removes the "not-valid" class, along with hiding the hint.
 */
 function cardValidator() {
   const cardInput = cardNumber.value;
@@ -232,24 +232,17 @@ function zipValidator() {
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
   if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.'
-    zipHint.style.display = 'block';
-    zipCode.parentElement.classList.add('not-valid');
-    zipCode.parentElement.classList.remove('valid');
-    return false; //If the zip code is fewer than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
   } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered more than 5 digits.'
-    zipHint.style.display = 'block';
-    zipCode.parentElement.classList.add('not-valid');
-    zipCode.parentElement.classList.remove('valid');
-    return false; //If the zip code is more than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
   } else if (nonDigitRegex.test(zipInput) === true) { //This checks if the zip code entered has any non-digit characters.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered non-digit characters.'
+  }
+  if (zipRegexFewer.test(zipInput) === true || zipRegexGreater.test(zipInput) === true || nonDigitRegex.test(zipInput) === true) {
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
-    return false; //If the zip code has any non-digit characters, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
-  } 
-  else {
+    return false; //If any of the above conditions are met, the function adds the "not-valid" class to the activity registration element, shows the hint, and returns "false".
+  } else {
     zipHint.style.display = 'none';
     zipCode.parentElement.classList.add('valid');
     zipCode.parentElement.classList.remove('not-valid'); //Else if the zip code is valid, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
