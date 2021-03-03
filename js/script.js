@@ -242,12 +242,12 @@ function zipValidator() {
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
     return false; //If the zip code is more than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
-  } else if (nonDigitRegex.test(zipInput) === true) {
+  } else if (nonDigitRegex.test(zipInput) === true) { //This checks if the zip code entered has any non-digit characters.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered non-digit characters.'
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
-    return false;
+    return false; //If the zip code has any non-digit characters, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element, and returns false.
   } 
   else {
     zipHint.style.display = 'none';
