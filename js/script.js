@@ -62,7 +62,7 @@ jobRole.addEventListener('change', event => {
 /*
 Adding an event listener to the shirt design field.
 The color selector is disabled until someone chooses a design theme.
-Once a theme is chosen, the matching color options for the selected design theme are displayed.
+Once a theme is chosen, the color selector is enabled and the matching color options for the selected design theme are displayed.
 */
 shirtDesign.addEventListener('input', event => {
   colorSelector.disabled = false;
