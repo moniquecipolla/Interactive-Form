@@ -80,7 +80,7 @@ shirtDesign.addEventListener('input', event => {
 });
 
 /*
-Adding an event listner for activity registration.
+Adding an event listener for activity registration.
 If someone selects an activity, the total cost is updated accordingly by adding the cost amount.
 Else, if someone deselects an activity, the total cost is updated accordingly by subtracting the cost amount.
 */
