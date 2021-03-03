@@ -10,6 +10,6 @@ Here you'll find an interactive form! I've added a few additional features, whic
 * The "Zip Code" field
 * The "CVV" field
 
-**Form fields that have conditional error messages**
+**Form fields that have conditional error messages:**
 * The "Zip Code" field
   * The message will change based on whether you've entered too many or too few digits, or if you've entered any non-digit characters.
