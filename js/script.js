@@ -23,7 +23,7 @@ const nameHint = document.getElementById('name-hint');
 const emailHint = document.getElementById('email-hint');
 const activityHint = document.getElementById('activities-hint');
 const cardHint = document.getElementById('cc-hint');
-let zipHint = document.getElementById('zip-hint');
+const zipHint = document.getElementById('zip-hint');
 const securityHint = document.getElementById('cvv-hint');
 const acitivityCheckboxes = document.querySelectorAll('input[type=checkbox]');
 
