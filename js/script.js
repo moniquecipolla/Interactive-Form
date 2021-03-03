@@ -209,7 +209,7 @@ Else, if it's a valid card number, the function adds the "valid" class and remov
 */
 function cardValidator() {
   const cardInput = cardNumber.value;
-  const cardRegex = /^[1-9][0-9]{12,15}$/;
+  const cardRegex = /^\d{13,16}$/;
   if (cardRegex.test(cardInput) === false) {
     cardHint.style.display = 'block';
     cardNumber.parentElement.classList.add('not-valid');
