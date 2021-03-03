@@ -188,7 +188,7 @@ function zipValidator() {
 
 function securityValidator() {
   const securityInput = cardSecurity.value;
-  const securityRegex = /^(?!000)\d{3}$/;
+  const securityRegex = /^\d{3}$/;
   if (securityRegex.test(securityInput) === false) {
     securityHint.style.display = 'block';
     cardSecurity.parentElement.classList.add('not-valid');
