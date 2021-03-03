@@ -1,3 +1,5 @@
+//Declaring my global variables that will be used in the functions and event listeners throughout my code.
+
 const form = document.querySelector('form');
 const jobRole = document.getElementById('title');
 const otherRole = document.getElementById('other-job-role');
@@ -27,22 +29,30 @@ const zipHint = document.getElementById('zip-hint');
 const cardSecurity = document.getElementById('cvv');
 const securityHint = document.getElementById('cvv-hint');
 
+//Setting up my page defaults like focusing on the name field and hiding/disabling fields that should be hidden/disabled.
 fullName.focus();
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
-paymentMethod[1].setAttribute('selected', 'selected');
+paymentMethod[1].setAttribute('selected', 'selected'); //selects Credit Card as the default payment choice.
 payPal.hidden = true;
 bitCoin.hidden = true;
 
+//Setting up my page defaults for tabbing through activity checkboxes for accessibility.
 for (i = 0; i < acitivityCheckboxes.length; i++) {  
   acitivityCheckboxes[i].addEventListener ('focus', event => {
-    event.target.parentElement.classList.add('focus');
+    event.target.parentElement.classList.add('focus'); //add the focus class when you tab onto an activity checkbox.
   });
   acitivityCheckboxes[i].addEventListener ('blur', event => {
-    event.target.parentElement.classList.remove('focus');
+    event.target.parentElement.classList.remove('focus'); //remove the focus class when you tab away from an activity checkbox.
   });
 }
 
+
+/*
+Adding an event listener to the job role field.
+If someone chooses "other" for their job role, the "other" textbox will appear.
+Else, the "other" textbox stays hidden.
+*/
 jobRole.addEventListener('change', event => {
   if (event.target.value === 'other') {
     otherRole.style.display = 'block';
@@ -51,6 +61,12 @@ jobRole.addEventListener('change', event => {
   }
 });
 
+
+/*
+Adding an event listener to the shirt design field.
+The color selector is disabled until someone chooses a design theme.
+Once a theme is chosen, the matching color options for the selected design theme are displayed.
+*/
 shirtDesign.addEventListener('input', event => {
   colorSelector.disabled = false;
   let selectedOption = event.target.value;
@@ -66,6 +82,11 @@ shirtDesign.addEventListener('input', event => {
   }
 });
 
+/*
+Adding an event listner for activity registration.
+When someone selects an activity, the total cost is updated accordingly by adding the cost amount.
+If somesone deselects an activity, the total cost is updated accordingly by subtracting the cost amount.
+*/
 activtyRegistration.addEventListener('change', event => {
   let costText = event.target.getAttribute('data-cost');
   let costNumber = +costText;
@@ -75,136 +96,149 @@ activtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
-
+/*
+The loop below checks to see if the selected activity matches with the date of any other activities.
+*/
   for (let i = 0; i < activityInfo.length; i++) {
     let selectedDate = event.target.getAttribute('data-day-and-time');
     let selectedActivity = event.target.getAttribute('name');
     let activityDate = activityInfo[i].getAttribute('data-day-and-time');
     let activityName = activityInfo[i].getAttribute('name');
-    if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) {
+    if (event.target.checked === true && selectedDate === activityDate && selectedActivity !== activityName) { //if any other activities match with the selected activity, the other activity is grayed out and rendered unselectable.
      activityInfo[i].disabled = true;
      activityLabel[i].classList.add('grayout');
-    } else if (event.target.checked === false && selectedDate === activityDate) {
+    } else if (event.target.checked === false && selectedDate === activityDate) { //if someone de-selects an acitivity, any conflicting activities are un-grayed and rendered selectable once more.
       activityInfo[i].disabled = false;
       activityLabel[i].classList.remove('grayout');
     }
   }
 });
 
+/*
+Adding an event listener to the payment type selector.
+If one payment type is selected, the information about the other two payment options are hidden.
+*/
 payment.addEventListener ('change', event => {
   let selectedPayment = event.target.value;
-  if (selectedPayment === 'paypal') {
+  if (selectedPayment === 'paypal') { //selecting PayPal hides BitCoin and CC.
     payPal.hidden = false;
     creditCard.hidden = true;
     bitCoin.hidden = true;
-  } else if (selectedPayment === 'bitcoin') {
+  } else if (selectedPayment === 'bitcoin') { //selecting BitCoin hides PayPal and CC.
     bitCoin.hidden = false;
     creditCard.hidden = true;
     payPal.hidden = true;
-  } else if (selectedPayment === 'credit-card') {
+  } else if (selectedPayment === 'credit-card') { //selecting Credit Card hides CC and BitCoin.
     creditCard.hidden = false;
     payPal.hidden = true;
     bitCoin.hidden = true;
   }
 });
 
-function nameValidator() {
+/*
+The below functions are "helper functions" to validate the different required fields.
+*/
+function nameValidator() { //nameValidator checks that the Name field is not a bunch of spaces or an empty string.
   const nameInput = fullName.value;
   const nameRegex = /^\s+$/;
   if (nameRegex.test(nameInput) === true || nameInput === '') {
-    nameHint.style.display = 'block';
+    nameHint.style.display = 'block'; //If it's an empty string or blank spaces, the function shows the name hint.
     fullName.parentElement.classList.add('not-valid');
     fullName.parentElement.classList.remove('valid');
-    return false;
+    return false; //If it's an empty string or blank spaces, the function adds the "not-valid" class to the parent element and returns "false".
   } else {
     nameHint.style.display = 'none';
     fullName.parentElement.classList.add('valid');
-    fullName.parentElement.classList.remove('not-valid');
+    fullName.parentElement.classList.remove('not-valid'); //If it's not an empty string or blank space, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
 
-function emailValidator() {
+function emailValidator() { //emailvalidator checks that the email field is a valid email.
   const emailInput = email.value;
   const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
   if (emailRegex.test(emailInput) === false) {
-    emailHint.style.display = 'block';
+    emailHint.style.display = 'block'; //If it's an invalid email, the function shows the email hint.
     email.parentElement.classList.add('not-valid');
     email.parentElement.classList.remove('valid');
-    return false;
+    return false;  //If it's an invalid email, the function adds the "not-valid" class to the parent element and returns "false".
   } else {
     emailHint.style.display = 'none';
     email.parentElement.classList.add('valid');
-    email.parentElement.classList.remove('not-valid');
+    email.parentElement.classList.remove('not-valid'); //If it is a valid email, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
 
-function activityValidator() {
+function activityValidator() { //activityValidator checks that at least one activity box has been checked.
   const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
   if (activitySelection.length === 0) {
-    activityHint.style.display = 'block';
+    activityHint.style.display = 'block'; //If no activity box has been checked, the function shows the activity hint.
     activtyRegistration.classList.add('not-valid');
     activtyRegistration.classList.remove('valid');
-    return false;
+    return false; //If no activity box has been checked, the function add the "not-valid" class to the activity registration element and returns "false".
   } else {
     activityHint.style.display = 'none';
     activtyRegistration.classList.add('valid');
-    activtyRegistration.classList.remove('not-valid');
+    activtyRegistration.classList.remove('not-valid'); //If the activity is valid, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 } 
 
-function cardValidator() {
+function cardValidator() { //cardValidator checks that the card number is a string of digits between 13 and 16 numbers.
   const cardInput = cardNumber.value;
   const cardRegex = /^[1-9][0-9]{12,15}$/;
   if (cardRegex.test(cardInput) === false) {
-    cardHint.style.display = 'block';
+    cardHint.style.display = 'block'; //If it's an invalid card number, the function shows the card hint.
     cardNumber.parentElement.classList.add('not-valid');
     cardNumber.parentElement.classList.remove('valid');
-    return false;
+    return false; //If it's an invalid card number, the function adds the "not-valid" class to the parent element and returns "false".
   } else {
     cardHint.style.display = 'none';
     cardNumber.parentElement.classList.add('valid');
-    cardNumber.parentElement.classList.remove('not-valid');
+    cardNumber.parentElement.classList.remove('not-valid'); //If it's a valid card number, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
 
-function zipValidator() {
+function zipValidator() { //zipValidator checks that the zip code is a 5 digit string.
   const zipInput = zipCode.value;
-  const zipRegexFewer = /^\d{0,4}$/;
-  const zipRegexGreater = /^\d{6,}$/;
-  if (zipRegexFewer.test(zipInput) === true) {
+  const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
+  const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
+  if (zipRegexFewer.test(zipInput) === true) { //This checks if the zip code entered is fewer than 5 digits.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.'
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
-    return false;
-  } else if (zipRegexGreater.test(zipInput) === true) {
+    return false; //If it's fewer than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element and returns false.
+  } else if (zipRegexGreater.test(zipInput) === true) { //This checks if the zip code entered is more than 5 digits.
     zipHint.textContent = 'Zip Code must be 5 digits. You have entered more than 5 digits.'
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
-    return false;
+    return false; //If it's more than 5 digits, the function shows the conditional zip code hint, adds the "not-valid" class to the parent element and returns false.
   } else {
     zipHint.style.display = 'none';
     zipCode.parentElement.classList.add('valid');
-    zipCode.parentElement.classList.remove('not-valid');
+    zipCode.parentElement.classList.remove('not-valid'); //If the zip code is valid, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
 
-function securityValidator() {
+function securityValidator() { //securityValidator checks that the card CVVs/security code is a 3 digit string.
   const securityInput = cardSecurity.value;
   const securityRegex = /^\d{3}$/;
   if (securityRegex.test(securityInput) === false) {
-    securityHint.style.display = 'block';
+    securityHint.style.display = 'block'; //If it's not a valid CVV/security code, the function shows the security/CVV hint.
     cardSecurity.parentElement.classList.add('not-valid');
     cardSecurity.parentElement.classList.remove('valid');
-    return false;
+    return false; //If it's not a valid CVV/security code, the function adds the "not-valid" class to the parent element and returns "false".
   } else {
     securityHint.style.display = 'none';
     cardSecurity.parentElement.classList.add('valid');
-    cardSecurity.parentElement.classList.remove('not-valid');
+    cardSecurity.parentElement.classList.remove('not-valid'); //If it's a valid CVV/security code, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
 
+/*
+Adding event listeners for 'keyup' events in all the required text fields.
+They call the related helper functions for each of the fields.
+*/
 fullName.addEventListener ('keyup', () => {
   nameValidator();
 });
@@ -225,6 +259,12 @@ cardSecurity.addEventListener ('keyup', () => {
   securityValidator();
 });
 
+/*
+Adding an event listener for submitting the form.
+It calls all the helper functions.
+If any of the helper functions return "false", it prevents the default behavior (form refresh).
+There's a separate conditional for the payment field that will only run the payment helper functions if a credit card is the selected payment type.
+*/
 form.addEventListener('submit', event => {
   nameValidator();
   emailValidator();
