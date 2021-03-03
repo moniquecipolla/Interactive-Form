@@ -167,7 +167,7 @@ Else, if it is a valid email, the function adds the "valid" class and removes th
 */
 function emailValidator() {
   const emailInput = email.value;
-  const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i; //Credit: TreeHouse Unit 3: Validating a Form (https://teamtreehouse.com/library/validating-an-email)
+  const emailRegex = /^[^@]+@[^@.]+\.(com)+$/i; //Credit: TreeHouse Unit 3: Validating a Form (https://teamtreehouse.com/library/validating-an-email)
   if (emailRegex.test(emailInput) === false) {
     emailHint.style.display = 'block';
     email.parentElement.classList.add('not-valid');
