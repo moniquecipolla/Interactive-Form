@@ -138,66 +138,94 @@ payment.addEventListener ('change', event => {
 The below functions are "helper functions" to validate the different required fields.
 These can be called when creating event listeners to help validate whether a required field has the correct information.
 */
-function nameValidator() { //nameValidator checks that the Name field is not a bunch of spaces or an empty string.
+
+/*
+nameValidator checks that the Name field is not a bunch of spaces or an empty string.
+If it's an empty string or blank spaces, the function shows the name hint.
+If it's an empty string or blank spaces, the function adds the "not-valid" class to the parent element and returns "false".
+Else, if it's not an empty string or blank space, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+*/
+function nameValidator() { 
   const nameInput = fullName.value;
   const nameRegex = /^\s+$/;
   if (nameRegex.test(nameInput) === true || nameInput === '') {
-    nameHint.style.display = 'block'; //If it's an empty string or blank spaces, the function shows the name hint.
+    nameHint.style.display = 'block'; 
     fullName.parentElement.classList.add('not-valid');
     fullName.parentElement.classList.remove('valid');
-    return false; //If it's an empty string or blank spaces, the function adds the "not-valid" class to the parent element and returns "false".
+    return false; 
   } else {
     nameHint.style.display = 'none';
     fullName.parentElement.classList.add('valid');
-    fullName.parentElement.classList.remove('not-valid'); //If it's not an empty string or blank space, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    fullName.parentElement.classList.remove('not-valid');
   }
 }
-
-function emailValidator() { //emailvalidator checks that the email field is a valid email.
+/*
+emailvalidator checks that the email field is a valid email.
+If it's an invalid email, the function shows the email hint.
+If it's an invalid email, the function adds the "not-valid" class to the parent element and returns "false".
+Else, if it is a valid email, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+*/
+function emailValidator() {
   const emailInput = email.value;
   const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
   if (emailRegex.test(emailInput) === false) {
-    emailHint.style.display = 'block'; //If it's an invalid email, the function shows the email hint.
+    emailHint.style.display = 'block';
     email.parentElement.classList.add('not-valid');
     email.parentElement.classList.remove('valid');
-    return false;  //If it's an invalid email, the function adds the "not-valid" class to the parent element and returns "false".
+    return false;
   } else {
     emailHint.style.display = 'none';
     email.parentElement.classList.add('valid');
-    email.parentElement.classList.remove('not-valid'); //If it is a valid email, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    email.parentElement.classList.remove('not-valid');
   }
 }
 
-function activityValidator() { //activityValidator checks that at least one activity box has been checked.
+/*
+activityValidator checks that at least one activity box has been checked.
+If no activity box has been checked, the function shows the activity hint.
+If no activity box has been checked, the function add the "not-valid" class to the activity registration element and returns "false".
+Else, if the activity is valid, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+*/
+function activityValidator() {
   const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
   if (activitySelection.length === 0) {
-    activityHint.style.display = 'block'; //If no activity box has been checked, the function shows the activity hint.
+    activityHint.style.display = 'block';
     activtyRegistration.classList.add('not-valid');
     activtyRegistration.classList.remove('valid');
-    return false; //If no activity box has been checked, the function add the "not-valid" class to the activity registration element and returns "false".
+    return false;
   } else {
     activityHint.style.display = 'none';
     activtyRegistration.classList.add('valid');
-    activtyRegistration.classList.remove('not-valid'); //If the activity is valid, the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    activtyRegistration.classList.remove('not-valid');
   }
 } 
 
-function cardValidator() { //cardValidator checks that the card number is a string of digits between 13 and 16 numbers.
+/*
+cardValidator checks that the card number is a string of digits between 13 and 16 numbers.
+If it's an invalid card number, the function shows the card hint.
+If it's an invalid card number, the function adds the "not-valid" class to the parent element and returns "false".
+Else, if it's a valid card number, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+*/
+function cardValidator() {
   const cardInput = cardNumber.value;
   const cardRegex = /^[1-9][0-9]{12,15}$/;
   if (cardRegex.test(cardInput) === false) {
-    cardHint.style.display = 'block'; //If it's an invalid card number, the function shows the card hint.
+    cardHint.style.display = 'block';
     cardNumber.parentElement.classList.add('not-valid');
     cardNumber.parentElement.classList.remove('valid');
-    return false; //If it's an invalid card number, the function adds the "not-valid" class to the parent element and returns "false".
+    return false;
   } else {
     cardHint.style.display = 'none';
     cardNumber.parentElement.classList.add('valid');
-    cardNumber.parentElement.classList.remove('not-valid'); //If it's a valid card number, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    cardNumber.parentElement.classList.remove('not-valid');
   }
 }
 
-function zipValidator() { //zipValidator checks that the zip code is a 5 digit string.
+/*
+zipValidator checks that the zip code is a 5 digit string.
+It provides conditional error messages, as described below.
+*/
+function zipValidator() {
   const zipInput = zipCode.value;
   const zipRegexFewer = /^\d{0,4}$/; //This variable stores the regex for a string fewer than 5 digits.
   const zipRegexGreater = /^\d{6,}$/; //This variable stores the regex for a string more than 5 digits.
@@ -216,22 +244,27 @@ function zipValidator() { //zipValidator checks that the zip code is a 5 digit s
   } else {
     zipHint.style.display = 'none';
     zipCode.parentElement.classList.add('valid');
-    zipCode.parentElement.classList.remove('not-valid'); //If the zip code is valid, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    zipCode.parentElement.classList.remove('not-valid'); //Else if the zip code is valid, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
   }
 }
-
-function securityValidator() { //securityValidator checks that the card CVVs/security code is a 3 digit string.
+/*
+securityValidator checks that the card CVV/security code is a 3 digit string.
+If it's not a valid CVV/security code, the function shows the security/CVV hint.
+If it's not a valid CVV/security code, the function adds the "not-valid" class to the parent element and returns "false".
+Else if it's a valid CVV/security code, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+*/
+function securityValidator() {
   const securityInput = cardSecurity.value;
   const securityRegex = /^\d{3}$/;
   if (securityRegex.test(securityInput) === false) {
-    securityHint.style.display = 'block'; //If it's not a valid CVV/security code, the function shows the security/CVV hint.
+    securityHint.style.display = 'block';
     cardSecurity.parentElement.classList.add('not-valid');
     cardSecurity.parentElement.classList.remove('valid');
-    return false; //If it's not a valid CVV/security code, the function adds the "not-valid" class to the parent element and returns "false".
+    return false;
   } else {
     securityHint.style.display = 'none';
     cardSecurity.parentElement.classList.add('valid');
-    cardSecurity.parentElement.classList.remove('not-valid'); //If it's a valid CVV/security code, the function the function adds the "valid" class and removes the "not-valid class", along with hiding the hint.
+    cardSecurity.parentElement.classList.remove('not-valid');
   }
 }
 
@@ -264,6 +297,7 @@ Adding an event listener for submitting the form.
 It calls all the helper functions.
 If any of the helper functions return "false", it prevents the default behavior (form refresh).
 There's a separate conditional for the payment field that will only run the payment helper functions if a credit card is the selected payment type.
+If any of the credit card helper functions return "false", the prevent the default behavior (form refresh).
 */
 form.addEventListener('submit', event => {
   nameValidator();
