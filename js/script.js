@@ -159,6 +159,7 @@ function nameValidator() {
     fullName.parentElement.classList.remove('not-valid');
   }
 }
+
 /*
 emailvalidator checks that the email field is a valid email with a .com address.
 If it's an invalid email, the function shows the email hint.
