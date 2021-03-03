@@ -142,9 +142,13 @@ function activityValidator() {
   const activitySelection = form.querySelectorAll('input[type=checkbox]:checked');
   if (activitySelection.length === 0) {
     activityHint.style.display = 'block';
+    activtyRegistration.classList.add('not-valid');
+    activtyRegistration.classList.remove('valid');
     return false;
   } else {
     activityHint.style.display = 'none';
+    activtyRegistration.classList.add('valid');
+    activtyRegistration.classList.remove('not-valid');
   }
 } 
 
