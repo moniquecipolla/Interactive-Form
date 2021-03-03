@@ -209,6 +209,18 @@ email.addEventListener ('keyup', () => {
   emailValidator();
 });
 
+cardNumber.addEventListener ('keyup', () => {
+  cardValidator();
+});
+
+zipCode.addEventListener ('keyup', () => {
+  zipValidator();
+});
+
+cardSecurity.addEventListener ('keyup', () => {
+  securityValidator();
+});
+
 form.addEventListener('submit', event => {
   nameValidator();
   emailValidator();
