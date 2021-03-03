@@ -39,10 +39,10 @@ bitCoin.hidden = true;
 //Setting up my page defaults for tabbing through activity checkboxes for accessibility.
 for (i = 0; i < acitivityCheckboxes.length; i++) {  
   acitivityCheckboxes[i].addEventListener ('focus', event => {
-    event.target.parentElement.classList.add('focus'); //Adds the focus class when you tab onto an activity checkbox.
+    event.target.parentElement.classList.add('focus'); //Adds the focus class when you tab or click onto an activity checkbox.
   });
   acitivityCheckboxes[i].addEventListener ('blur', event => {
-    event.target.parentElement.classList.remove('focus'); //Removes the focus class when you tab away from an activity checkbox.
+    event.target.parentElement.classList.remove('focus'); //Removes the focus class when you tab or click away from an activity checkbox.
   });
 }
 
