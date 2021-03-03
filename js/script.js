@@ -23,11 +23,11 @@ const nameHint = document.getElementById('name-hint');
 const emailHint = document.getElementById('email-hint');
 const activityHint = document.getElementById('activities-hint');
 const cardHint = document.getElementById('cc-hint');
-const zipHint = document.getElementById('zip-hint');
+let zipHint = document.getElementById('zip-hint');
 const securityHint = document.getElementById('cvv-hint');
 const acitivityCheckboxes = document.querySelectorAll('input[type=checkbox]');
 
-document.getElementById('name').focus();
+fullName.focus();
 otherRole.style.display = 'none';
 colorSelector.disabled = true;
 paymentMethod[1].setAttribute('selected', 'selected');
@@ -165,8 +165,16 @@ function cardValidator() {
 
 function zipValidator() {
   const zipInput = zipCode.value;
-  const zipRegex = /^\d{5}$/;
-  if (zipRegex.test(zipInput) === false) {
+  const zipRegexFewer = /^\d{0,4}$/;
+  const zipRegexGreater = /^\d{6,}$/;
+  if (zipRegexFewer.test(zipInput) === true) {
+    zipHint.textContent = 'Zip Code must be 5 digits. You have entered fewer than 5 digits.'
+    zipHint.style.display = 'block';
+    zipCode.parentElement.classList.add('not-valid');
+    zipCode.parentElement.classList.remove('valid');
+    return false;
+  } else if (zipRegexGreater.test(zipInput) === true) {
+    zipHint.textContent = 'Zip Code must be 5 digits. You have entered more than 5 digits.'
     zipHint.style.display = 'block';
     zipCode.parentElement.classList.add('not-valid');
     zipCode.parentElement.classList.remove('valid');
