@@ -1,4 +1,4 @@
-//Declaring my global variables that will be used in the functions and event listeners throughout my code.
+//Declaring my global variables that will be used throughout my code.
 const form = document.querySelector('form');
 const jobRole = document.getElementById('title');
 const otherRole = document.getElementById('other-job-role');
