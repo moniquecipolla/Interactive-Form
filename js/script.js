@@ -136,6 +136,7 @@ payment.addEventListener ('change', event => {
 
 /*
 The below functions are "helper functions" to validate the different required fields.
+These can be called when creating event listeners to help validate whether a required field has the correct information.
 */
 function nameValidator() { //nameValidator checks that the Name field is not a bunch of spaces or an empty string.
   const nameInput = fullName.value;
