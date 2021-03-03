@@ -93,6 +93,7 @@ activtyRegistration.addEventListener('change', event => {
     finalCost -= costNumber;
   }
   totalCost.innerHTML = `Total: $${finalCost}`;
+  
 /*
 The loop below checks to see if the selected activity matches with the date of any other activities.
 If any other activities match with the selected activity, the other activity is grayed out and rendered unselectable.
